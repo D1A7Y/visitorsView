@@ -1,0 +1,65 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages++
+		{
+		    "path" : "pages/index/index/index",
+		    "style": {
+		    	"navigationBarTitleText": "主页"
+		    }
+		},{
+			"path": "pages/user/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/user/register/index",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/user/forget/index",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		},
+		{
+		    "path" : "pages/index/mine/index",
+		    "style" : {
+				"navigationBarTitleText": "我的"
+			}
+			
+		},
+		{
+            "path" : "pages/index/index/reservation",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff"
+	},
+	"tabBar": {
+		"color": "#8a8a8a",//字体颜色
+		"selectedColor": "#ff65a3",//选中时字体颜色
+		"backgroundColor": "#fff",//导航栏背景颜色
+		"position": "bottom",//位置
+		"borderStyle": "black",//边框颜色
+		"list": [
+			{
+				"pagePath": "pages/index/index/index",
+				"text": "首页",
+				"iconPath": "static/images/index.png",
+				"selectedIconPath": "static/images/index2.png"
+			},
+			{
+				"pagePath": "pages/index/mine/index",
+				"text": "我的",
+				"iconPath": "static/images/mine.png",
+				"selectedIconPath": "static/images/mine2.png"
+			}
+		]
+	}
+}
