@@ -47,7 +47,7 @@ export default {
 							uni.setStorageSync("UID",user.id);
 							uni.setStorageSync("UNAME",user.name);
 							uni.setStorageSync("UROLE",user.role);
-							//TODO user角色处理，考虑是否需要对应跳转
+							uni.setStorageSync("UCOMPANY",user.company);
 							uni.switchTab({
 								url:'../../index/index/index'
 							})

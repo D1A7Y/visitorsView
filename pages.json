@@ -1,4 +1,6 @@
-{
+{	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages++
 		{
 		    "path" : "pages/index/index/index",
@@ -32,7 +34,96 @@
 		},
 		{
             "path" : "pages/index/index/reservation",
+            "style" : {
+				"navigationBarTitleText": "预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/allReservation",
             "style" : {}
+        }
+		,{
+            "path" : "pages/index/index/updateReservation",
+            "style" : {
+				"navigationBarTitleText": "修改预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/updateR",
+            "style" : {
+				"navigationBarTitleText": "修改预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/cancelReservation",
+            "style" : {
+				"navigationBarTitleText": "已取消预约"
+			}
+        },
+		{
+		    "path" : "pages/index/index/cancelR",
+		    "style" : {
+				"navigationBarTitleText": "已取消预约"
+			}
+		}
+       
+        ,{
+            "path" : "pages/index/index/successReservation",
+            "style" : {
+				"navigationBarTitleText": "成功预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/confirmReservation",
+            "style" : {
+				"navigationBarTitleText": "确认预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/confirmR",
+            "style" : {
+				"navigationBarTitleText": "确认预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/failReservation",
+            "style" : {
+				"navigationBarTitleText": "被驳回预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/beReservationCode",
+            "style" : {
+				"navigationBarTitleText": "待完成预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/beReservationC",
+            "style" : {
+				"navigationBarTitleText": "待完成预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/doneReservationCode",
+            "style" : {
+				"navigationBarTitleText": "已完成预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/doneReservationC",
+            "style" : {
+				"navigationBarTitleText": "已完成预约"
+			}
+        }
+        ,{
+            "path" : "pages/index/index/in",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/index/index/blacklist",
+            "style" : {
+				"navigationBarTitleText": "黑名单"
+			}
         }
     ],
 	"globalStyle": {

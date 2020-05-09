@@ -16,12 +16,7 @@
 		data() {
 			return {
 				gridList: [
-					// 	{
-					// 	name: '预约',
-					// 	imgUrl: '../../static/zy-grid/grid-01.svg',
-					// 	tips: 19,
-					// 	url: 'reservation'
-					// },
+				
 				],
 				gridList2: [{
 						id: 0,
@@ -34,13 +29,63 @@
 						name: '修改预约',
 						imgUrl: '../../static/icon/icon2.png',
 						tips: 19,
-						url: 'reservation'
-					}, {
+						url: 'updateReservation'
+					},
+					{
 						id: 2,
-						name: '预约信息',
+						name: '已取消预约',
 						imgUrl: '../../static/icon/icon1.png',
 						tips: 19,
-						url: 'reservation'
+						url: 'cancelReservation'
+					},
+					{
+						id: 3,
+						name: '预约成功信息',
+						imgUrl: '../../static/icon/icon4.png',
+						tips: 19,
+						url: 'successReservation'
+					},
+					{
+						id: 4,
+						name: '预约确认',
+						imgUrl: '../../static/icon/icon8.png',
+						tips: 19,
+						url: 'confirmReservation'
+					},
+					{
+						id: 5,
+						name: '待完成预约',
+						imgUrl: '../../static/icon/icon6.png',
+						tips: 19,
+						url: 'beReservationCode'
+					},
+					{
+						id: 6,
+						name: '已完成预约',
+						imgUrl: '../../static/icon/icon7.png',
+						tips: 19,
+						url: 'doneReservationCode'
+					},
+					{
+						id: 7,
+						name: '黑名单',
+						imgUrl: '../../static/icon/icon5.png',
+						tips: 19,
+						url: 'blacklist'
+					},
+					{
+						id: 8,
+						name: '被驳回预约',
+						imgUrl: '../../static/icon/icon.png',
+						tips: 19,
+						url: 'failReservation'
+					},
+					{
+						id: 9,
+						name: '签到',
+						imgUrl: '../../static/icon/icon.png',
+						tips: 19,
+						url: 'in'
 					}
 				]
 
@@ -59,17 +104,19 @@
 			} else {
 				if (loginRes[3] == 0) {
 					//超级管理员
-
+					this.gridList=[]
 				}
 				if (loginRes[3] == 1) {
 					//普通用户
-					this.gridList = [gridList2[0], gridList2[1],gridList2[2]]
+					this.gridList = [gridList2[0], gridList2[1],gridList2[2],gridList2[3],gridList2[8]]
 				}
 				if (loginRes[3] == 2) {
 					//公司员工
+					this.gridList=[gridList2[4],gridList2[5],gridList2[6],gridList2[7]]
 				}
 				if (loginRes[3] == 3) {
 					//门卫
+					this.gridList=[gridList2[9]]
 				}
 			}
 		}
