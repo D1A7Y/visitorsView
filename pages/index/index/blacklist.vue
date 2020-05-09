@@ -2,7 +2,7 @@
 	<view>
 		<u-subsection :list="list" :current="current" active-color="#fa3534" mode="subsection" @change="sectionChange">
 		</u-subsection>
-		<u-search placeholder="请输入姓名" v-model="keyword" :show-action="false"></u-search>
+		<u-search placeholder="请输入姓名" v-model="keyword" :show-action="false" @search="search"></u-search>
 		<view class="example">
 			<v-table :columns="columnsCheckBox" :list="data2" selection="single" @on-selection-change="onSelectionChange"></v-table>
 			<uni-pagination @change="handlePage" :total="total" :current="pageNum" :pageSize="pageSize"></uni-pagination>
@@ -41,7 +41,7 @@
 									</view>
 								</view>
 								<u-button type="primary"  size="medium" :plain="true" @click="cancel">取消</u-button>
-								<u-button type="error"  size="medium" :plain="true" @click="ok" style="margin-left: 40px;">黑名单</u-button>
+								<u-button type="error"  size="medium" :plain="true" @click="ok" style="margin-left: 40px;">{{value}}</u-button>
 							</view>
 						</view>
 					</view>
@@ -60,6 +60,8 @@
 		},
 		data() {
 			return {
+				value:'黑名单',
+				id:'',
 				idcard:'',
 				name:'',
 				phone:'',
@@ -95,6 +97,7 @@
 		},
 		methods: {
 			sectionChange(index) {
+				this.value='拉入';
 				this.current = index
 				if(this.current==0){
 					uni.request({
@@ -115,6 +118,7 @@
 					});
 				}
 				if(this.current==1){
+					this.value='拉出';
 					uni.request({
 						url: 'http://localhost:8080/user/getByName',
 						method: 'POST',
@@ -135,6 +139,7 @@
 				
 			},
 			onSelectionChange(obj) {
+				this.id = obj.new.item.id;
 				this.phone = obj.new.item.phone;
 				this.idcard = obj.new.item.idCard;
 				this.name = obj.new.item.name;
@@ -144,7 +149,112 @@
 				this.show = false
 			},
 			ok(){
-				
+				var flag=true;
+				if(this.current==0){
+					flag= true;
+				}
+				if(this.current==1){
+					flag = false;
+				}
+				uni.request({
+					url: 'http://localhost:8080/user/black',
+					method: 'GET',
+					data: {
+						id:this.id,
+						flag:flag
+					},
+					success: res => {
+						if(res.data.status==200){
+							if(flag){
+								uni.request({
+									url: 'http://localhost:8080/user/getAll',
+									method: 'POST',
+									data: {
+										name:"",
+										pageSize:this.pageSize,
+										pageNum:this.pageNum
+									},
+									success: res => {
+										var page = res.data.data.page
+										this.total = page.totalSize
+										this.data2 = page.content
+									},
+									fail: () => {},
+									complete: () => {}
+								});
+							}else{
+								uni.request({
+									url: 'http://localhost:8080/user/getByName',
+									method: 'POST',
+									data: {
+										name:"",
+										pageSize:this.pageSize,
+										pageNum:this.pageNum
+									},
+									success: res => {
+										var page = res.data.data.page
+										this.total = page.totalSize
+										this.data2 = page.content
+									},
+									fail: () => {},
+									complete: () => {}
+								});
+							}
+						}else{
+							uni.showToast({
+								title:'error'
+							})
+						}
+						this.show =false;
+						
+					},
+					fail: () => {},
+					complete: () => {}
+				});
+			},
+			search(){
+				var flag = false;
+				if(this.current==0){
+					flag= true;
+				}
+				if(this.current==1){
+					flag = false;
+				}
+				if(flag){
+					uni.request({
+						url: 'http://localhost:8080/user/getAll',
+						method: 'POST',
+						data: {
+							name:this.keyword,
+							pageSize:this.pageSize,
+							pageNum:this.pageNum
+						},
+						success: res => {
+							var page = res.data.data.page
+							this.total = page.totalSize
+							this.data2 = page.content
+						},
+						fail: () => {},
+						complete: () => {}
+					});
+				}else{
+					uni.request({
+						url: 'http://localhost:8080/user/getByName',
+						method: 'POST',
+						data: {
+							name:this.keyword,
+							pageSize:this.pageSize,
+							pageNum:this.pageNum
+						},
+						success: res => {
+							var page = res.data.data.page
+							this.total = page.totalSize
+							this.data2 = page.content
+						},
+						fail: () => {},
+						complete: () => {}
+					});
+				}
 			},
 			onShow:function(){
 				if(this.current==0){

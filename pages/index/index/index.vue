@@ -82,8 +82,8 @@
 					},
 					{
 						id: 9,
-						name: '签到',
-						imgUrl: '../../static/icon/icon.png',
+						name: '搜索',
+						imgUrl: '../../static/icon/icon9.png',
 						tips: 19,
 						url: 'in'
 					}
